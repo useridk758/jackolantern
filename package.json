@@ -1,0 +1,12 @@
+{
+  "name": "dark-triad",
+  "version": "1.0.0",
+  "description": "Premium Web Interface",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["dark-triad", "web-proxy", "interface"],
+  "author": "YourName",
+  "license": "MIT"
+}
