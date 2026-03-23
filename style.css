@@ -1,92 +1,35 @@
-:root {
-    --primary: #ff003c;
-    --bg: #050505;
+:root { --red: #ff003c; --bg: #050505; }
+
+body, html { margin: 0; padding: 0; background: var(--bg); color: white; font-family: 'Courier New', monospace; overflow: hidden; }
+
+.screen { 
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+    display: flex; flex-direction: column; justify-content: center; align-items: center; 
+    z-index: 10; background: var(--bg);
 }
-
-body {
-    background-color: var(--bg);
-    color: white;
-    font-family: 'Courier New', monospace;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-}
-
-#matrix-bg {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle, #ff003c 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.05;
-    z-index: 1;
-}
-
-.main-content { text-align: center; z-index: 10; transition: 0.5s; }
-
-.glow-title {
-    font-size: clamp(3rem, 10vw, 5.5rem);
-    letter-spacing: 12px;
-    margin: 0;
-    text-shadow: 0 0 15px var(--primary);
-}
-
-.input-group {
-    margin-top: 30px;
-    background: #111;
-    padding: 10px;
-    border: 1px solid #333;
-    display: flex;
-}
-
-input {
-    background: transparent; border: none; color: white;
-    padding: 12px; width: 350px; outline: none;
-}
-
-button {
-    background: var(--primary); color: white; border: none;
-    padding: 12px 25px; cursor: pointer; font-weight: bold;
-}
-
-/* THE SPINNER */
-.spinner {
-    width: 40px; height: 40px;
-    border: 3px solid rgba(255, 0, 60, 0.1);
-    border-top: 3px solid var(--primary);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 20px auto;
-}
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
 
 .hidden { display: none !important; }
 
-/* ERROR STYLE */
-#error-box {
-    color: var(--primary);
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid var(--primary);
-    background: rgba(255, 0, 60, 0.1);
-    font-size: 0.9rem;
-    animation: shake 0.4s;
-}
+/* HOME SCREEN */
+.glow-title { font-size: 5rem; letter-spacing: 15px; text-shadow: 0 0 20px var(--red); margin-bottom: 40px; }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
-}
+.input-box { display: flex; border: 1px solid #333; background: #111; padding: 5px; width: 500px; }
+#url-input { flex: 1; background: transparent; border: none; color: white; padding: 15px; outline: none; font-size: 1rem; }
+#exec-btn { background: var(--red); color: white; border: none; padding: 0 30px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+#exec-btn:hover { background: white; color: black; box-shadow: 0 0 20px var(--red); }
 
-/* OVERLAY */
-#display-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: black; z-index: 100; display: flex; flex-direction: column;
-}
+/* SPINNER */
+.spinner { width: 80px; height: 80px; border: 4px solid rgba(255, 0, 60, 0.1); border-top: 4px solid var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 20px; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.blink { animation: blinker 1.5s linear infinite; color: var(--red); font-weight: bold; }
+@keyframes blinker { 50% { opacity: 0; } }
 
-.top-bar { background: #111; padding: 10px; display: flex; justify-content: space-between; }
-iframe { flex-grow: 1; border: none; background: white; }
+/* COOL ERROR SCREEN */
+.error-content { text-align: center; border: 2px solid var(--red); padding: 50px; background: rgba(255, 0, 60, 0.05); }
+.glitch { font-size: 3rem; color: var(--red); text-shadow: 2px 2px black; margin: 0; }
+.error-msg { background: var(--red); color: white; padding: 5px 10px; margin: 20px 0; font-weight: bold; }
+.back-btn { background: white; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+
+/* SITE VIEW */
+.nav-bar { width: 100%; background: #111; padding: 10px; display: flex; justify-content: flex-end; }
+iframe { width: 100%; height: 100%; border: none; background: white; }
