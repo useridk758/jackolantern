@@ -7,31 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background Animation Layer -->
     <div id="matrix-bg"></div>
 
-    <div class="main-content">
+    <!-- MAIN INTERFACE -->
+    <div class="main-content" id="main-ui">
         <h1 class="glow-title">DARK TRIAD</h1>
         <p class="subtitle">System Access Terminal</p>
         
         <div class="input-group">
-            <input type="text" id="url-input" placeholder="Enter resource identifier or URL...">
+            <input type="text" id="url-input" placeholder="Enter resource identifier...">
             <button id="exec-btn">EXECUTE</button>
         </div>
 
-        <!-- Custom Error Message -->
-        <div id="error-box" class="hidden">
-            <p>CRITICAL ERROR: Connection to resource refused or invalid security handshake.</p>
-        </div>
-
-        <!-- Loading Spinner -->
+        <!-- LOADING AREA -->
         <div id="loader" class="hidden">
             <div class="spinner"></div>
-            <p class="loading-text">ESTABLISHING ENCRYPTED LINK...</p>
+            <p class="loading-text">ESTABLISHING LINK...</p>
+        </div>
+
+        <!-- ERROR MESSAGE (Only shows on failure) -->
+        <div id="error-box" class="hidden">
+            <p>CRITICAL ERROR: Connection Refused. Resource is protected or invalid.</p>
         </div>
     </div>
 
-    <!-- Website Display Overlay -->
+    <!-- WEBSITE VIEW (Hidden until loaded) -->
     <div id="display-overlay" class="hidden">
         <div class="top-bar">
             <span id="display-url"></span>
