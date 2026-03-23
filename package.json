@@ -1,7 +1,7 @@
 {
   "name": "dark-triad",
   "version": "1.0.0",
-  "description": "Customized personal resource dashboard.",
+  "description": "Advanced System Interface for Resource Management",
   "main": "index.html",
   "scripts": {
     "start": "npx serve ."
