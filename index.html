@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Triad | Portal</title>
+    <title>Dark Triad</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="matrix-bg"></div>
-
-    <!-- MAIN INTERFACE -->
-    <div class="main-content" id="main-ui">
+    <!-- LAYER 1: HOME -->
+    <div id="home-screen" class="screen">
         <h1 class="glow-title">DARK TRIAD</h1>
-        <p class="subtitle">System Access Terminal</p>
-        
-        <div class="input-group">
-            <input type="text" id="url-input" placeholder="Enter resource identifier...">
+        <div class="input-box">
+            <input type="text" id="url-input" placeholder="ENTER RESOURCE LINK...">
             <button id="exec-btn">EXECUTE</button>
-        </div>
-
-        <!-- LOADING AREA -->
-        <div id="loader" class="hidden">
-            <div class="spinner"></div>
-            <p class="loading-text">ESTABLISHING LINK...</p>
-        </div>
-
-        <!-- ERROR MESSAGE (Only shows on failure) -->
-        <div id="error-box" class="hidden">
-            <p>CRITICAL ERROR: Connection Refused. Resource is protected or invalid.</p>
         </div>
     </div>
 
-    <!-- WEBSITE VIEW (Hidden until loaded) -->
-    <div id="display-overlay" class="hidden">
-        <div class="top-bar">
-            <span id="display-url"></span>
-            <button id="close-btn">DISCONNECT</button>
+    <!-- LAYER 2: LOADING -->
+    <div id="loading-screen" class="screen hidden">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="blink">ESTABLISHING ENCRYPTED LINK...</p>
+        </div>
+    </div>
+
+    <!-- LAYER 3: ERROR (THE "COOL" FAIL SCREEN) -->
+    <div id="error-screen" class="screen hidden">
+        <div class="error-content">
+            <h2 class="glitch">ACCESS_DENIED</h2>
+            <div class="error-msg">HANDSHAKE REFUSED BY REMOTE HOST</div>
+            <p>Security protocols prevented the resource from loading within the terminal.</p>
+            <button class="back-btn">RETURN TO HOME</button>
+        </div>
+    </div>
+
+    <!-- LAYER 4: THE SITE -->
+    <div id="site-screen" class="screen hidden">
+        <div class="nav-bar">
+            <button class="back-btn">EXIT TERMINAL</button>
         </div>
         <iframe id="target-frame"></iframe>
     </div>
