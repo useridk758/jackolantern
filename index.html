@@ -5,24 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dark Triad | Portal</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Favicon link (Optional: replace with your icon later) -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-    <div class="main-wrapper">
-        <h1 class="dark-title">DARK TRIAD</h1>
-        <p class="tagline">Advanced System Interface</p>
+    <!-- Background Animation Layer -->
+    <div id="matrix-bg"></div>
+
+    <div class="main-content">
+        <h1 class="glow-title">DARK TRIAD</h1>
+        <p class="subtitle">System Access Terminal</p>
         
-        <div class="input-area">
-            <input type="text" id="main-input" placeholder="Request resource or identifier...">
-            <button id="exec-btn">Execute</button>
+        <div class="input-group">
+            <input type="text" id="url-input" placeholder="Enter resource identifier or URL...">
+            <button id="exec-btn">EXECUTE</button>
         </div>
 
-        <div class="status-grid">
-            <div class="status-item">Secure Node</div>
-            <div class="status-item">Active Link</div>
-            <div class="status-item">Encrypted</div>
+        <!-- Custom Error Message -->
+        <div id="error-box" class="hidden">
+            <p>CRITICAL ERROR: Connection to resource refused or invalid security handshake.</p>
         </div>
+
+        <!-- Loading Spinner -->
+        <div id="loader" class="hidden">
+            <div class="spinner"></div>
+            <p class="loading-text">ESTABLISHING ENCRYPTED LINK...</p>
+        </div>
+    </div>
+
+    <!-- Website Display Overlay -->
+    <div id="display-overlay" class="hidden">
+        <div class="top-bar">
+            <span id="display-url"></span>
+            <button id="close-btn">DISCONNECT</button>
+        </div>
+        <iframe id="target-frame"></iframe>
     </div>
 
     <script src="script.js"></script>
