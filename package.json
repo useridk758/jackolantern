@@ -1,12 +1,11 @@
 {
   "name": "dark-triad",
   "version": "1.0.0",
-  "description": "Premium Web Interface",
+  "description": "Customized personal resource dashboard.",
   "main": "index.html",
   "scripts": {
     "start": "npx serve ."
   },
-  "keywords": ["dark-triad", "web-proxy", "interface"],
-  "author": "YourName",
+  "author": "Dark Triad Team",
   "license": "MIT"
 }
