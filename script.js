@@ -1,46 +1,50 @@
+const screens = {
+    home: document.getElementById('home-screen'),
+    loading: document.getElementById('loading-screen'),
+    error: document.getElementById('error-screen'),
+    site: document.getElementById('site-screen')
+};
+
 const input = document.getElementById('url-input');
-const execBtn = document.getElementById('exec-btn');
-const loader = document.getElementById('loader');
-const errorBox = document.getElementById('error-box');
-const overlay = document.getElementById('display-overlay');
 const frame = document.getElementById('target-frame');
-const closeBtn = document.getElementById('close-btn');
+
+function showScreen(name) {
+    Object.values(screens).forEach(s => s.classList.add('hidden'));
+    screens[name].classList.remove('hidden');
+}
 
 function launch() {
     let url = input.value.trim();
     if (!url) return;
-
-    // Reset State
-    errorBox.classList.add('hidden');
-    loader.classList.remove('hidden');
-    
-    // Format URL
     if (!url.startsWith('http')) url = 'https://' + url;
 
-    // Timeout Logic: If site doesn't load in 7 seconds, show error
-    const loadTimeout = setTimeout(() => {
-        if (overlay.classList.contains('hidden')) {
-            loader.classList.add('hidden');
-            errorBox.classList.remove('hidden');
-            frame.src = ""; // Stop trying to load
+    showScreen('loading');
+
+    // Timeout: If it doesn't load in 8 seconds, it's likely blocked.
+    const failTimer = setTimeout(() => {
+        if (screens.site.classList.contains('hidden')) {
+            showScreen('error');
+            frame.src = "";
         }
-    }, 7000);
+    }, 8000);
 
     frame.src = url;
 
     frame.onload = () => {
-        clearTimeout(loadTimeout);
-        // Success! Hide loader and show the site
-        loader.classList.add('hidden');
-        overlay.classList.remove('hidden');
-        document.getElementById('display-url').innerText = url;
+        clearTimeout(failTimer);
+        // Only show if the frame actually has a valid URL
+        if (frame.src !== "" && frame.src !== "about:blank") {
+            showScreen('site');
+        }
     };
 }
 
-execBtn.addEventListener('click', launch);
-closeBtn.addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    frame.src = "";
+document.getElementById('exec-btn').addEventListener('click', launch);
+document.querySelectorAll('.back-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        showScreen('home');
+        frame.src = "";
+    });
 });
 
 input.addEventListener('keypress', (e) => { if (e.key === 'Enter') launch(); });
