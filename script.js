@@ -1,18 +1,21 @@
-document.getElementById('launch-btn').addEventListener('click', function() {
-    const url = document.getElementById('url-input').value;
-    
-    if (url) {
-        console.log("Dark Triad directing to: " + url);
-        // Add your redirect or proxy logic here
-        alert("Dark Triad is preparing your connection to: " + url);
-    } else {
-        alert("Please enter a URL first.");
-    }
-});
+const inputField = document.getElementById('main-input');
+const actionBtn = document.getElementById('exec-btn');
 
-// Allow 'Enter' key to trigger launch
-document.getElementById('url-input').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        document.getElementById('launch-btn').click();
+function handleRequest() {
+    const data = inputField.value.trim();
+    
+    if (data) {
+        console.log("Dark Triad: Processing Request...");
+        // This is where you link your logic. For now, it searches Google.
+        window.location.href = "https://www.google.com" + encodeURIComponent(data);
+    } else {
+        inputField.placeholder = "Data required...";
+        setTimeout(() => { inputField.placeholder = "Request resource or identifier..."; }, 2000);
     }
+}
+
+actionBtn.addEventListener('click', handleRequest);
+
+inputField.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleRequest();
 });
